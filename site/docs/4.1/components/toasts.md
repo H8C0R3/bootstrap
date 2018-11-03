@@ -107,7 +107,7 @@ When you have multiple toasts, we default to vertiaclly stacking them in a reada
 
 ## Accessibility
 
-Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an [`aria-live` region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user's focus or otherwise interrupting the user. Additionally, include `aria-atomic="true"` to ensure that the entire toast is always announced as a single (atomic) unit, rather than simply announcing what was changed (which could lead to problems if you only update part of the toast's content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the [alert component]({{ site.baseurl }}/docs/{{ site.docs_version }}/components/alerts/) instead of toast.
+Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an [`aria-live` region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user's focus or otherwise interrupt the user. Additionally, include `aria-atomic="true"` to ensure that the entire toast is always announced as a single (atomic) unit, rather than announcing what was changed (which could lead to problems if you only update part of the toast's content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the [alert component]({{ site.baseurl }}/docs/{{ site.docs_version }}/components/alerts/) instead of toast.
 
 Note that the live region needs to be present in the markup *before* the toast is generated or updated. If you dynamically generate both at the same time and inject them into the page, they will generally not be announced by assistive technologies.
 
@@ -116,7 +116,7 @@ You also need to adapt the `role` and `aria-live` level depending on the content
 As the content you're displaying changes, be sure to update the [`delay` timeout](#options) to ensure people have enough time to read the toast.
 
 {% highlight html %}
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+<div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-delay="10000">
   <div role="alert" aria-live="assertive" aria-atomic="true">...</div>
 </div>
 {% endhighlight %}
@@ -148,7 +148,7 @@ Place toasts with custom CSS as you need them. The top right is often used for n
 
 <div class="bg-dark">
 {% capture example %}
-<div style="position: relative; min-height: 200px;">
+<div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
   <div class="toast" style="position: absolute; top: 0; right: 0;">
     <div class="toast-header">
       <span class="rounded mr-2 d-block bg-primary" style="width: 20px; height: 20px;"></span>
@@ -171,7 +171,7 @@ For systems that generate more notifications, consider using a wrapping element 
 
 <div class="bg-dark">
 {% capture example %}
-<div style="position: relative; min-height: 200px;">
+<div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
   <!-- Position it -->
   <div style="position: absolute; top: 0; right: 0;">
 
@@ -214,7 +214,7 @@ You can also get fancy with flexbox utilities to align toasts horizontally and/o
 <div class="bg-dark">
 {% capture example html %}
 <!-- Flexbox container for aligning the toasts -->
-<div class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
 
   <!-- Then put toasts within -->
   <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
